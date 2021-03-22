@@ -1,2 +1,2 @@
 # juhan_dev
-coding_practice
+coding practice zone
