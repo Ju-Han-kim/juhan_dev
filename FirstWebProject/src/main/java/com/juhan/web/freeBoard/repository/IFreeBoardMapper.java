@@ -21,5 +21,4 @@ public interface IFreeBoardMapper {
 	//delete Article
 	void deleteArticle(int boardNo);
 	
-	
 }
