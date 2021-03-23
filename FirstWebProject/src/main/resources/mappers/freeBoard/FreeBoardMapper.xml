@@ -17,5 +17,31 @@
 	<select id="getArticleList" resultMap="freeBoardMapper">
 		SELECT * FROM free_board ORDER BY board_no DESC
 	</select>
-
+	
+	<select id="getArticle" resultMap="freeBoardMapper">
+		SELECT * FROM free_board WHERE board_no=#{boardNo}
+	</select>
+	
+	<insert id="insertArticle">
+		INSERT INTO free_board(board_no, title, writer, content)
+		VALUES(id_seq.NEXTVAL,#{title},#{writer},#{content})
+	</insert>
+	
+	<update id="updateArticle">
+		UPDATE free_board SET title=#{title}, content=#{content} WHERE board_no=#{boardNo}
+	</update>
+	
+	<delete id="deleteArticle">
+		DELETE FROM free_board WHERE board_no=#{boardNo}
+	</delete>
+	
 </mapper>
+
+
+
+
+
+
+
+
+
