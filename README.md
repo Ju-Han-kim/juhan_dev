@@ -10,6 +10,5 @@ Using Repository
 version
  - java-version	: 1.8
  - Oracle Database	: Database 18c Express Edition
- - Eclips		: 2020-12
-	 	ㄴSpring Tools 3
+ - Eclips		: 2020-12 // Spring Tools 3
  - Apache-tomcat	: 9.0.37
