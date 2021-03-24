@@ -6,7 +6,7 @@ Using Repository
  - MyBatis
  - MyBatis-spring
  - spring-test
- - 
+ - jquery
 
 version
  - java-version	: 1.8
