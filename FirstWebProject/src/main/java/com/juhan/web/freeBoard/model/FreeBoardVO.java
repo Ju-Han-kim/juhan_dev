@@ -13,11 +13,11 @@ public class FreeBoardVO {
 	
 	public FreeBoardVO() {}
 
-	public FreeBoardVO(int boardNo, String title, String wrtier, String content, Timestamp regDate, int viewCnt) {
+	public FreeBoardVO(int boardNo, String title, String writer, String content, Timestamp regDate, int viewCnt) {
 		super();
 		this.boardNo = boardNo;
 		this.title = title;
-		this.writer = wrtier;
+		this.writer = writer;
 		this.content = content;
 		this.regDate = regDate;
 		this.viewCnt = viewCnt;
@@ -39,12 +39,12 @@ public class FreeBoardVO {
 		this.title = title;
 	}
 
-	public String getWrtier() {
+	public String getWriter() {
 		return writer;
 	}
 
-	public void setWrtier(String wrtier) {
-		this.writer = wrtier;
+	public void setWriter(String writer) {
+		this.writer = writer;
 	}
 
 	public String getContent() {
@@ -73,7 +73,7 @@ public class FreeBoardVO {
 
 	@Override
 	public String toString() {
-		return "FreeBoardVO [boardNo=" + boardNo + ", title=" + title + ", wrtier=" + writer + ", content=" + content
+		return "FreeBoardVO [boardNo=" + boardNo + ", title=" + title + ", writer=" + writer + ", content=" + content
 				+ ", regDate=" + regDate + ", viewCnt=" + viewCnt + "]";
 	}
 	

@@ -1,14 +1,7 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
-<html>
-<head>
-	<title>Home</title>
-</head>
-<body>
-<h1>
-	Hello world!  
-</h1>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<P>  The time on the server is ${serverTime}. </P>
-</body>
-</html>
+<jsp:include page="include/header.jsp" />
+<img src="<c:url value='/img/home/welcome.jpg'/>" alt="" style="width:100%; height:60%;" />
+<jsp:include page="include/footer.jsp" />
