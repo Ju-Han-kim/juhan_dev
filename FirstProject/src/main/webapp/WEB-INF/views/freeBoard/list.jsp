@@ -34,6 +34,14 @@
 		</table>
 		
 		<a href="<c:url value='/board/write'/>">새로운 글 작성</a>
+		
+		<!-- 페이지처리 -->
+		
+		
+		
+		
+		
+		<!-- 검색처리 -->
 	
 	</div>
 	<script>
