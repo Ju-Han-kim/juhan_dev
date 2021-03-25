@@ -42,7 +42,17 @@
 		
 		
 		<!-- 검색처리 -->
-	
+		<hr>
+		<form method="post">
+			<select name="part">
+				<option value="writer">작성자</option>
+				<option value="title">제목</option>
+			</select>
+			<input name="keyword" size="15"/>
+			<input type="submit" value="검색"/>
+		</form>
+		
+		
 	</div>
 	<script>
 		const msg = "${msg}";

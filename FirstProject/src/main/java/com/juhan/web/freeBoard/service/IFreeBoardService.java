@@ -21,4 +21,6 @@ public interface IFreeBoardService {
 	//delete Article
 	void deleteArticle(int boardNo);
 	
+	//count up viewCnt
+	void viewCntUp(int boardNo)
 }

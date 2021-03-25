@@ -38,5 +38,10 @@ public class FreeBoardService implements IFreeBoardService {
 	public void deleteArticle(int boardNo) {
 		mapper.deleteArticle(boardNo);
 	}
+	
+	@Override
+	public void viewCntUp(int boardNo) {
+		mapper.viewCntUp(boardNo);
+	}
 
 }

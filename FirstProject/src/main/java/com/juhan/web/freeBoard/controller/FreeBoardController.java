@@ -43,6 +43,7 @@ public class FreeBoardController {
 	//글 상세보기 mapping
 	@GetMapping("/content/{boardNo}")
 	public String freeBoardContent(@PathVariable int boardNo, Model model) {
+		service.viewCntUp(boardNo);
 		model.addAttribute("article", service.getArticle(boardNo));
 		return "freeBoard/content";
 	}

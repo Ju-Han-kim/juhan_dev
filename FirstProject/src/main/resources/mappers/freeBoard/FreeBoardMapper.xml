@@ -35,6 +35,10 @@
 		DELETE FROM free_board WHERE board_no=#{boardNo}
 	</delete>
 	
+	<update id="viewCntUp">
+		UPDATE free_board SET view_cnt = view_cnt + 1 WHERE board_no=#{boardNo}
+	</update>
+	
 </mapper>
 
 
