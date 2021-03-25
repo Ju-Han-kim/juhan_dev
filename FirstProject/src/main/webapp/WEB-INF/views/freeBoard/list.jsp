@@ -22,7 +22,7 @@
 					<tr>
 						<td>${article.boardNo}</td>
 						<td>
-							<a href="<c:url value='/board/content?boardNo=${article.boardNo}'/>">
+							<a href="<c:url value='/board/content/${article.boardNo}'/>">
 								${article.title}
 							</a>
 						</td>
@@ -36,4 +36,22 @@
 		<a href="<c:url value='/board/write'/>">새로운 글 작성</a>
 	
 	</div>
+	<script>
+		const msg = "${msg}";
+		if(msg === "deleteSuccess"){
+			alert("게시글이 삭제되었습니다.");
+		}
+	</script>
 	<jsp:include page="../include/footer.jsp" />
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
