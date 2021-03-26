@@ -19,6 +19,7 @@
 		<input type="submit" id="delete-btn" onclick="return confirm('정말 삭제하시겠습니까?')" value="삭제"/>
 		<input type="hidden" name="boardNo" value="${article.boardNo}"/>
 		<input type="hidden" name="currentPage" value="${p.currentPage}"/>
+		<input type="hidden" name="messagePerPage" value="${p.messagePerPage}"/>
 	</form>
 
 <jsp:include page="../include/footer.jsp" />
@@ -29,7 +30,7 @@
 		const btnForm = $("#btnForm");
 		
 		$("#list-btn").click(function() {
-			location.href="<c:url value='/board/list?currentPage=${p.currentPage}'/>";
+			location.href="<c:url value='/board/list?currentPage=${p.currentPage}&messagePerPage=${p.messagePerPage}'/>";
 		});
 		
 		$("#update-btn").click(function() {

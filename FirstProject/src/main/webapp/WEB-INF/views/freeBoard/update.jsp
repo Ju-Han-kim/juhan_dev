@@ -18,6 +18,7 @@
 		<input type="button" id="list-btn" value="목록"/>
 		<input type="hidden" name="boardNo" value="${article.boardNo}"/>
 		<input type="hidden" name="currentPage" value="${p.currentPage}"/>
+		<input type="hidden" name="messagePerPage" value="${p.messagePerPage}"/>
 	</form>
 
 <jsp:include page="../include/footer.jsp" />
@@ -26,7 +27,7 @@
 <script>
 	$(function() {
 		$("#list-btn").click(function() {
-			location.href="<c:url value='/board/list?currentPage=${p.currentPage}'/>";
+			location.href="<c:url value='/board/list?currentPage=${p.currentPage}&messagePerPage=${p.messagePerPage}'/>";
 		});
 	});
 </script>    

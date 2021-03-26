@@ -12,6 +12,11 @@
 	<div align="center">
 		<h2>자유게시판</h2>	
 		<hr>
+		<div align="right">
+			<input type="button" class="message-page" value="10" />
+			<input type="button" class="message-page" value="20" />
+			<input type="button" class="message-page" value="30" />
+		</div>
 		<table border="1">
 			<tr>
 				<th>글번호</th>
@@ -27,7 +32,7 @@
 					<tr>
 						<td>${article.boardNo}</td>
 						<td>
-							<a href="<c:url value='/board/content/${article.boardNo}?currentPage=${pm.page.currentPage}'/>">
+							<a href="<c:url value='/board/content/${article.boardNo}?currentPage=${pm.page.currentPage}&messagePerPage=${pm.page.messagePerPage}'/>">
 								${article.title}
 							</a>
 						</td>
@@ -43,18 +48,18 @@
 		<!-- 페이지처리 -->
 		
 		<c:if test="${pm.prev}">
-			<a href="<c:url value='/board/list?currentPage=1' />"> << </a>&nbsp;
-			<a href="<c:url value='/board/list?currentPage=${pm.beginPage - 1}' />"> < </a>&nbsp;
+			<a href="<c:url value='/board/list?currentPage=1&messagePerPage=${pm.page.messagePerPage}' />"> << </a>&nbsp;
+			<a href="<c:url value='/board/list?currentPage=${pm.beginPage - 1}&messagePerPage=${pm.page.messagePerPage}' />"> < </a>&nbsp;
 		</c:if>
 		
 		<c:forEach var="pageNum" begin="${pm.beginPage}" end="${pm.endPage}">
 			<a class="${(pageNum == pm.page.currentPage)?'page-btn':''}" 
-			href="<c:url value='/board/list?currentPage=${pageNum}'/>"> ${pageNum} </a>&nbsp;
+			href="<c:url value='/board/list?currentPage=${pageNum}&messagePerPage=${pm.page.messagePerPage}'/>"> ${pageNum} </a>&nbsp;
 		</c:forEach>
 		
 		<c:if test="${pm.next}">
-			<a href="<c:url value='/board/list?currentPage=${pm.endPage + 1}' />"> > </a>&nbsp;
-			<a href="<c:url value='/board/list?currentPage=${pm.totalPage}' />"> >> </a>&nbsp;
+			<a href="<c:url value='/board/list?currentPage=${pm.endPage + 1}&messagePerPage=${pm.page.messagePerPage}' />"> > </a>&nbsp;
+			<a href="<c:url value='/board/list?currentPage=${pm.totalPage}&messagePerPage=${pm.page.messagePerPage}' />"> >> </a>&nbsp;
 		</c:if>
 		
 		<!-- 검색처리 -->
@@ -79,7 +84,14 @@
 			$("#input-btn").click(function() {
 				location.href="<c:url value='/board/write'/>";
 			});
+			
+			$(".message-page").click(function() {
+				let message = $(this).val();
+				location.href="<c:url value='/board/list?currentPage=${pm.page.currentPage}&messagePerPage="+message+"'/>";
+			});
+			
 		});
+		
 	</script>
 	<jsp:include page="../include/footer.jsp" />
 	

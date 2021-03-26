@@ -23,11 +23,16 @@ public class PageMgr {
 	
 	private void calcPageData() {
 		totalPage = (allArticleCnt>=1) ? (int)Math.ceil(allArticleCnt/(double)page.getMessagePerPage()) : 1;
+		
+		if(page.getCurrentPage() > totalPage) {
+			page.setCurrentPage(totalPage);
+		}
+		
 		endPage = (int)Math.ceil(page.getCurrentPage()/(double)displayPageBtn)*displayPageBtn;
 		beginPage = endPage-displayPageBtn+1;
 		
 		prev = (beginPage > 1) ? true : false;
-		if(endPage > totalPage) {
+		if(endPage >= totalPage) {
 			endPage = totalPage;
 			next = false;
 		}
