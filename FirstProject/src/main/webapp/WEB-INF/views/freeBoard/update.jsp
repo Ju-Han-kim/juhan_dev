@@ -17,6 +17,7 @@
 		<input type="submit" id="update-btn" value="수정"/>
 		<input type="button" id="list-btn" value="목록"/>
 		<input type="hidden" name="boardNo" value="${article.boardNo}"/>
+		<input type="hidden" name="currentPage" value="${p.currentPage}"/>
 	</form>
 
 <jsp:include page="../include/footer.jsp" />
@@ -25,7 +26,7 @@
 <script>
 	$(function() {
 		$("#list-btn").click(function() {
-			location.href="<c:url value='/board/list'/>";
+			location.href="<c:url value='/board/list?currentPage=${p.currentPage}'/>";
 		});
 	});
 </script>    

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.juhan.web.commons.PageVO;
 import com.juhan.web.freeBoard.model.FreeBoardVO;
 import com.juhan.web.freeBoard.repository.IFreeBoardMapper;
 
@@ -15,8 +16,8 @@ public class FreeBoardService implements IFreeBoardService {
 	private IFreeBoardMapper mapper;
 	
 	@Override
-	public List<FreeBoardVO> getArticleList() {
-		return mapper.getArticleList();
+	public List<FreeBoardVO> getArticleList(PageVO paging) {
+		return mapper.getArticleList(paging);
 	}
 
 	@Override
@@ -42,6 +43,11 @@ public class FreeBoardService implements IFreeBoardService {
 	@Override
 	public void viewCntUp(int boardNo) {
 		mapper.viewCntUp(boardNo);
+	}
+	
+	@Override
+	public int countArticles() {
+		return mapper.countArticles();
 	}
 
 }

@@ -14,8 +14,15 @@
 		<result property="viewCnt" column="view_cnt" />
 	</resultMap>
 	
+	<!-- 
 	<select id="getArticleList" resultMap="freeBoardMapper">
 		SELECT * FROM free_board ORDER BY board_no DESC
+	</select>
+	 -->
+	<select id="getArticleList" resultMap="freeBoardMapper">
+		SELECT * FROM (
+			SELECT ROW_NUMBER() OVER(ORDER BY board_no DESC) AS rn, free_board.* FROM free_board
+		) WHERE rn BETWEEN (#{currentPage}-1)*#{messagePerPage}+1 AND #{currentPage}*#{messagePerPage}
 	</select>
 	
 	<select id="getArticle" resultMap="freeBoardMapper">
@@ -38,6 +45,11 @@
 	<update id="viewCntUp">
 		UPDATE free_board SET view_cnt = view_cnt + 1 WHERE board_no=#{boardNo}
 	</update>
+	
+	<select id="countArticles" resultType="int">
+		SELECT COUNT(*) FROM free_board
+	</select>
+	
 	
 </mapper>
 
