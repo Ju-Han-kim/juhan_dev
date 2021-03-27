@@ -12,7 +12,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.juhan.web.commons.PageMgr;
 import com.juhan.web.commons.PageVO;
+import com.juhan.web.freeBoard.model.FreeBoardCommentVO;
 import com.juhan.web.freeBoard.model.FreeBoardVO;
+import com.juhan.web.freeBoard.service.IFreeBoardCommentService;
 import com.juhan.web.freeBoard.service.IFreeBoardService;
 
 @Controller
@@ -21,6 +23,8 @@ public class FreeBoardController {
 	
 	@Autowired
 	private IFreeBoardService service;
+	@Autowired
+	private IFreeBoardCommentService cService;
 	
 	//자유게시판 mapping<no paging>
 	/*
@@ -58,8 +62,20 @@ public class FreeBoardController {
 	public String freeBoardContent(@PathVariable int boardNo,@ModelAttribute("p") PageVO page , Model model) {
 		service.viewCntUp(boardNo);
 		model.addAttribute("article", service.getArticle(boardNo));
+		model.addAttribute("comments", cService.getComments(boardNo));
 		return "freeBoard/content";
 	}
+	
+	//댓글 작성하기 mapping
+	@PostMapping("/content/{boardNo}")
+	public String insertComment(@PathVariable int boardNo, PageVO page, 
+								FreeBoardCommentVO comment, RedirectAttributes ra) {
+		ra.addFlashAttribute("msg", "commentInsertSuccess");
+		ra.addFlashAttribute("p", page);
+		cService.insertComment(comment);
+		return "redirect:/board/content/"+boardNo;
+	}
+	
 	
 	//글 삭제 mapping
 	@PostMapping("/delete")
