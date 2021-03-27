@@ -31,7 +31,7 @@
 	
 	<insert id="insertArticle">
 		INSERT INTO free_board(board_no, title, writer, content)
-		VALUES(id_seq.NEXTVAL,#{title},#{writer},#{content})
+		VALUES(freeboardno_seq.NEXTVAL,#{title},#{writer},#{content})
 	</insert>
 	
 	<update id="updateArticle">
