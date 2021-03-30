@@ -2,13 +2,13 @@ package com.juhan.web.freeBoard.repository;
 
 import java.util.*;
 
-import com.juhan.web.commons.PageVO;
+import com.juhan.web.commons.SearchVO;
 import com.juhan.web.freeBoard.model.FreeBoardVO;
 
 public interface IFreeBoardMapper {
 	
 	//get all Articles
-	List<FreeBoardVO> getArticleList(PageVO page);
+	List<FreeBoardVO> getArticleList(SearchVO paging);
 	
 	//get one Article
 	FreeBoardVO getArticle(int boardNo);
@@ -25,6 +25,6 @@ public interface IFreeBoardMapper {
 	//count up viewCnt
 	void viewCntUp(int boardNo);
 	
-	//count all articles
-	int countArticles();
+	//count search articles
+	int countArticles(SearchVO paging);
 }

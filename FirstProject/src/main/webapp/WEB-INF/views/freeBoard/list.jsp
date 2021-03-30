@@ -48,31 +48,30 @@
 		<!-- 페이지처리 -->
 		
 		<c:if test="${pm.prev}">
-			<a href="<c:url value='/board/list?currentPage=1&messagePerPage=${pm.page.messagePerPage}' />"> << </a>&nbsp;
-			<a href="<c:url value='/board/list?currentPage=${pm.beginPage - 1}&messagePerPage=${pm.page.messagePerPage}' />"> < </a>&nbsp;
+			<a href="<c:url value='/board/list${pm.makeUri(1)}' />"> << </a>&nbsp;
+			<a href="<c:url value='/board/list${pm.makeUri(pm.beginPage - 1)}' />"> < </a>&nbsp;
 		</c:if>
 		
 		<c:forEach var="pageNum" begin="${pm.beginPage}" end="${pm.endPage}">
 			<a class="${(pageNum == pm.page.currentPage)?'page-btn':''}" 
-			href="<c:url value='/board/list?currentPage=${pageNum}&messagePerPage=${pm.page.messagePerPage}'/>"> ${pageNum} </a>&nbsp;
+			href="<c:url value='/board/list${pm.makeUri(pageNum)}'/>"> ${pageNum} </a>&nbsp;
 		</c:forEach>
 		
 		<c:if test="${pm.next}">
-			<a href="<c:url value='/board/list?currentPage=${pm.endPage + 1}&messagePerPage=${pm.page.messagePerPage}' />"> > </a>&nbsp;
-			<a href="<c:url value='/board/list?currentPage=${pm.totalPage}&messagePerPage=${pm.page.messagePerPage}' />"> >> </a>&nbsp;
+			<a href="<c:url value='/board/list${pm.makeUri(pm.endPage + 1)}' />"> > </a>&nbsp;
+			<a href="<c:url value='/board/list${pm.makeUri(pm.totalPage)}' />"> >> </a>&nbsp;
 		</c:if>
 		
 		<!-- 검색처리 -->
 		<hr>
-		<form method="post">
-			<select name="part">
-				<option value="writer">작성자</option>
-				<option value="title">제목</option>
-			</select>
-			<input name="keyword" size="15"/>
-			<input type="submit" value="검색"/>
-		</form>
-		
+		<select name="part" id="part">
+			<option value="writer" ${param.part == "writer" ? "selected" : ""}>작성자</option>
+			<option value="title" ${param.part == "title" ? "selected" : ""}>제목</option>
+			<option value="content" ${param.part == "content" ? "selected" : ""}>내용</option>
+			<option value="titleContent" ${param.part == "titleContent" ? "selected" : ""}>제목+내용</option>
+		</select>
+		<input name="keyword" id="keywordInput" size="15" value="${param.keyword}"/>
+		<input type="button" id="searchBtn" value="검색"/>
 	</div>
 	<script>
 		const msg = "${msg}";
@@ -88,6 +87,18 @@
 			$(".message-page").click(function() {
 				let message = $(this).val();
 				location.href="<c:url value='/board/list?currentPage=${pm.page.currentPage}&messagePerPage="+message+"'/>";
+			});
+			
+			$("#searchBtn").click(function() {
+				const part = $("#part option:selected").val();
+				const keyword = $("#keywordInput").val();
+				location.href = "<c:url value='/board/list?part="+part+"&keyword="+keyword+"' />";
+			});
+			
+			$("#keywordInput").keydown(function(key) {
+				if(key.keyCode == 13){
+					$("#searchBtn").click();
+				}
 			});
 			
 		});

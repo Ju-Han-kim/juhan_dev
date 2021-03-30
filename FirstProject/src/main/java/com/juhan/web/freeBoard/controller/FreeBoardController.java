@@ -12,6 +12,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.juhan.web.commons.PageMgr;
 import com.juhan.web.commons.PageVO;
+import com.juhan.web.commons.SearchVO;
 import com.juhan.web.freeBoard.model.FreeBoardCommentVO;
 import com.juhan.web.freeBoard.model.FreeBoardVO;
 import com.juhan.web.freeBoard.service.IFreeBoardCommentService;
@@ -26,6 +27,14 @@ public class FreeBoardController {
 	@Autowired
 	private IFreeBoardCommentService cService;
 	
+	@GetMapping("/list")
+	public String freeBoardList(SearchVO paging, Model model) {
+		PageMgr pm = new PageMgr(paging, service.countArticles(paging));
+		model.addAttribute("pm", pm);
+		model.addAttribute("articles", service.getArticleList(paging));
+		return "freeBoard/list";
+	}
+	
 	//자유게시판 mapping<no paging>
 	/*
 	@GetMapping("/list")
@@ -34,6 +43,8 @@ public class FreeBoardController {
 		return "freeBoard/list";
 	}
 	*/
+	//자유게시판 mapping<no searching
+	/*
 	@GetMapping("/list")
 	public String freeBoardList(PageVO page, Model model) {
 		PageMgr pm = new PageMgr(page, service.countArticles());
@@ -41,7 +52,7 @@ public class FreeBoardController {
 		model.addAttribute("articles", service.getArticleList(page));
 		return "freeBoard/list";
 	}
-	
+	*/
 	
 	//글작성 양식 mapping
 	@GetMapping("/write")

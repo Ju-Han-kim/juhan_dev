@@ -1,5 +1,7 @@
 package com.juhan.web.commons;
 
+import org.springframework.web.util.UriComponentsBuilder;
+
 public class PageMgr {
 	
 	private PageVO page;
@@ -11,6 +13,17 @@ public class PageMgr {
 	private boolean next;
 	
 	private final int displayPageBtn = 10;
+	
+	//uri 작성 method
+	public String makeUri(int currentPage) {
+		String uri = UriComponentsBuilder.newInstance()
+							.queryParam("currentPage", currentPage)
+							.queryParam("messagePerPage", page.getMessagePerPage())
+							.queryParam("part", ((SearchVO)page).getPart())
+							.queryParam("keyword", ((SearchVO)page).getKeyword())
+							.build().toUriString();
+		return uri;
+	}
 
 	public PageMgr() {}
 	

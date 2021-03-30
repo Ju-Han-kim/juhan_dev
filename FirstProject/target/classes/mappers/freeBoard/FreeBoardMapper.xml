@@ -14,14 +14,25 @@
 		<result property="viewCnt" column="view_cnt" />
 	</resultMap>
 	
-	<!-- 
-	<select id="getArticleList" resultMap="freeBoardMapper">
-		SELECT * FROM free_board ORDER BY board_no DESC
-	</select>
-	 -->
+	<sql id="search">
+		<if test="part == 'title'">
+			WHERE title LIKE '%'||#{keyword}||'%'
+		</if>
+		<if test="part == 'writer'">
+			WHERE writer LIKE '%'||#{keyword}||'%'
+		</if>
+		<if test="part == 'content'">
+			WHERE content LIKE '%'||#{keyword}||'%'
+		</if>
+		<if test="part == 'titleContent'">
+			WHERE title LIKE '%'||#{keyword}||'%' OR content LIKE '%'||#{keyword}||'%' 
+		</if>
+	</sql>
+
 	<select id="getArticleList" resultMap="freeBoardMapper">
 		SELECT * FROM (
 			SELECT ROW_NUMBER() OVER(ORDER BY board_no DESC) AS rn, free_board.* FROM free_board
+			<include refid="search" />			
 		) WHERE rn BETWEEN (#{currentPage}-1)*#{messagePerPage}+1 AND #{currentPage}*#{messagePerPage}
 	</select>
 	
@@ -47,7 +58,7 @@
 	</update>
 	
 	<select id="countArticles" resultType="int">
-		SELECT COUNT(*) FROM free_board
+		SELECT COUNT(*) FROM free_board <include refid="search" />
 	</select>
 	
 	
