@@ -70,7 +70,7 @@ public class FreeBoardController {
 	
 	//글 상세보기 mapping
 	@GetMapping("/content/{boardNo}")
-	public String freeBoardContent(@PathVariable int boardNo,@ModelAttribute("p") PageVO page , Model model) {
+	public String freeBoardContent(@PathVariable int boardNo,@ModelAttribute("p") SearchVO paging , Model model) {
 		service.viewCntUp(boardNo);
 		model.addAttribute("article", service.getArticle(boardNo));
 		model.addAttribute("comments", cService.getComments(boardNo));
@@ -79,10 +79,10 @@ public class FreeBoardController {
 	
 	//댓글 작성하기 mapping
 	@PostMapping("/content/{boardNo}")
-	public String insertComment(@PathVariable int boardNo, PageVO page, 
+	public String insertComment(@PathVariable int boardNo, SearchVO paging, 
 								FreeBoardCommentVO comment, RedirectAttributes ra) {
 		ra.addFlashAttribute("msg", "commentInsertSuccess");
-		ra.addFlashAttribute("p", page);
+		ra.addFlashAttribute("p", paging);
 		cService.insertComment(comment);
 		return "redirect:/board/content/"+boardNo;
 	}
@@ -98,16 +98,16 @@ public class FreeBoardController {
 	
 	//글 수정 양식 호출 mapping
 	@GetMapping("/update")
-	public String update(FreeBoardVO article, @ModelAttribute("p") PageVO page, Model model) {
+	public String update(FreeBoardVO article, @ModelAttribute("p") SearchVO paging, Model model) {
 		model.addAttribute("article", service.getArticle(article.getBoardNo()));
 		return "freeBoard/update";
 	}
 	
 	//글 수정 반영 mapping
 	@PostMapping("/update")
-	public String update(FreeBoardVO article, PageVO page, RedirectAttributes ra) {
+	public String update(FreeBoardVO article, SearchVO paging, RedirectAttributes ra) {
 		service.updateArticle(article);
-		ra.addFlashAttribute("p", page);
+		ra.addFlashAttribute("p", paging);
 		ra.addFlashAttribute("msg","updateSuccess");
 		return "redirect:/board/content/"+article.getBoardNo();
 	}

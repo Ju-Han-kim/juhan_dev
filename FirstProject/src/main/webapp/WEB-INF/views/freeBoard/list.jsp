@@ -32,7 +32,7 @@
 					<tr>
 						<td>${article.boardNo}</td>
 						<td>
-							<a href="<c:url value='/board/content/${article.boardNo}?currentPage=${pm.page.currentPage}&messagePerPage=${pm.page.messagePerPage}'/>">
+							<a href="<c:url value='/board/content/${article.boardNo}${(param.currentPage==null)?pm.makeUri(1) : pm.makeUri(param.currentPage)}'/>">
 								${article.title}
 							</a>
 						</td>
@@ -65,10 +65,10 @@
 		<!-- 검색처리 -->
 		<hr>
 		<select name="part" id="part">
-			<option value="writer" ${param.part == "writer" ? "selected" : ""}>작성자</option>
-			<option value="title" ${param.part == "title" ? "selected" : ""}>제목</option>
-			<option value="content" ${param.part == "content" ? "selected" : ""}>내용</option>
-			<option value="titleContent" ${param.part == "titleContent" ? "selected" : ""}>제목+내용</option>
+			<option value="writer" ${param.part == 'writer' ? 'selected' : ''}>작성자</option>
+			<option value="title" ${param.part == 'title' ? 'selected' : ''}>제목</option>
+			<option value="content" ${param.part == 'content' ? "selected" : ''}>내용</option>
+			<option value="titleContent" ${param.part == 'titleContent' ? 'selected' : ''}>제목+내용</option>
 		</select>
 		<input name="keyword" id="keywordInput" size="15" value="${param.keyword}"/>
 		<input type="button" id="searchBtn" value="검색"/>
