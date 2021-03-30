@@ -105,9 +105,8 @@ public class FreeBoardController {
 	
 	//글 수정 반영 mapping
 	@PostMapping("/update")
-	public String update(FreeBoardVO article, SearchVO paging, RedirectAttributes ra) {
+	public String update(FreeBoardVO article, RedirectAttributes ra) {
 		service.updateArticle(article);
-		ra.addFlashAttribute("p", paging);
 		ra.addFlashAttribute("msg","updateSuccess");
 		return "redirect:/board/content/"+article.getBoardNo();
 	}

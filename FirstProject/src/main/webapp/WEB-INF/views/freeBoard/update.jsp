@@ -17,10 +17,6 @@
 		<input type="submit" id="update-btn" value="수정"/>
 		<input type="button" id="list-btn" value="목록"/>
 		<input type="hidden" name="boardNo" value="${article.boardNo}"/>
-		<input type="hidden" name="currentPage" value="${p.currentPage}"/>
-		<input type="hidden" name="messagePerPage" value="${p.messagePerPage}"/>
-		<input type="hidden" name="part" value="${p.part}"/>
-		<input type="hidden" name="keyword" value="${p.keyword}"/>
 	</form>
 
 <jsp:include page="../include/footer.jsp" />

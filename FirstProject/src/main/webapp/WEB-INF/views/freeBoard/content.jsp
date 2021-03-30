@@ -79,7 +79,10 @@
 	const msg = "${msg}";
 	if(msg === "commentInsertSuccess"){
 		alert("댓글이 등록되었습니다!");
+	}else if(msg === "updateSuccess"){
+		alert("수정이 완료되었습니다!");
 	}
+	
 </script>    
 
 
