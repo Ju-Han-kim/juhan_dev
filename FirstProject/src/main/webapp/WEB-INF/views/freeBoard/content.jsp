@@ -66,7 +66,7 @@
 		const btnForm = $("#btnForm");
 		
 		$("#list-btn").click(function() {
-			location.href="<c:url value='/board/list?currentPage=${p.currentPage}&messagePerPage=${p.messagePerPage}&part=${p.part}$keyword=${p.keyword}'/>";
+			location.href="<c:url value='/board/list?currentPage=${p.currentPage}&messagePerPage=${p.messagePerPage}&part=${p.part}&keyword=${p.keyword}'/>";
 		});
 		
 		$("#update-btn").click(function() {
