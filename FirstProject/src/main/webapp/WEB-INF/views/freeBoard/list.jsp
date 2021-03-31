@@ -74,7 +74,7 @@
 		<input type="button" id="searchBtn" value="검색"/>
 	</div>
 	<script>
-		const msg = "${msg}";
+		const msg = "${param.msg}";
 		if(msg === "deleteSuccess"){
 			alert("게시글이 삭제되었습니다.");
 		}

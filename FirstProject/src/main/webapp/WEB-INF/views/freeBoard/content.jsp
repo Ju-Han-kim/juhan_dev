@@ -44,7 +44,11 @@
 						<td><strong>${comment.writer}</strong></td>
 						<td>${comment.content}</td>
 						<td width="110"><fmt:formatDate pattern="yyyy-MM-dd" value="${comment.regDate}" /></td>
-						<td width="100"> <input type="button" value="수정">&nbsp;<input type="button" value="삭제"> </td>
+						<td width="100"> 
+							<a href="">수정</a>&nbsp;
+							<a href="<c:url value='/comment/del/${comment.commentNo}?boardNo=${article.boardNo}&currentPage=${p.currentPage}&messagePerPage=${p.messagePerPage}&part=${p.part}&keyword=${p.keyword}' />"
+							onclick="return confirm('정말 삭제하시겠습니까?')">삭제</a>
+						</td>
 					</tr>
 				</c:forEach>
 				<!-- 작성 폼 -->
@@ -64,24 +68,32 @@
 <script>
 	$(function() {
 		const btnForm = $("#btnForm");
-		
+		//list로 이동
 		$("#list-btn").click(function() {
+			console.log("리스트이동!");
 			location.href="<c:url value='/board/list?currentPage=${p.currentPage}&messagePerPage=${p.messagePerPage}&part=${p.part}&keyword=${p.keyword}'/>";
 		});
 		
+		//게시글 수정페이지로 이동
 		$("#update-btn").click(function() {
+			console.log("수정페이지이동!");
 			btnForm.attr("method", "get");
 			btnForm.attr("action","<c:url value='/board/update'/>");
 			btnForm.submit();
 		});
+		
+		
 	});
 	
 	const msg = "${msg}";
 	if(msg === "commentInsertSuccess"){
 		alert("댓글이 등록되었습니다!");
 	}else if(msg === "updateSuccess"){
-		alert("수정이 완료되었습니다!");
+		alert("게시글 수정이 완료되었습니다!");
+	}else if(msg === "commentDeleteSuccess"){
+		alert("댓글 삭제가 완료되었습니다!");
 	}
+		
 	
 </script>    
 

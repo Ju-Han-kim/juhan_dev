@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.juhan.web.commons.PageMgr;
-import com.juhan.web.commons.PageVO;
 import com.juhan.web.commons.SearchVO;
 import com.juhan.web.freeBoard.model.FreeBoardCommentVO;
 import com.juhan.web.freeBoard.model.FreeBoardVO;
