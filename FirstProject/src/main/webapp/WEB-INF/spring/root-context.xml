@@ -26,6 +26,7 @@
 	</bean>
 	
 	<mybatis-spring:scan base-package="com.juhan.web.freeBoard.repository"/>
+	<mybatis-spring:scan base-package="com.juhan.web.user.repository"/>
 	
 			
 </beans>
