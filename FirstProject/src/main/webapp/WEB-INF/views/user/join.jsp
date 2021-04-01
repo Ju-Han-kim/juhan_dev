@@ -53,7 +53,7 @@
 						chk1 = false;
 					}else{
 						$("#inputUserId").css("background-color", "aqua");
-						$("#idChk").html('<b style="color:green; font-size: 12px;">[사용 가능한 아이디입니다!]</b>');
+						$("#idChk").html('<b style="color:green; font-size: 12px;">[OK]</b>');
 						chk1 = true;
 					}
 				},
@@ -64,7 +64,56 @@
 		}
 	});//end idCheck
 	
+	//비밀번호 값 검증
+	$("#inputPw").on("keyup", function() {
+		if($(this).val() === ""){
+			$(this).css("background-color", "pink");
+			$("#pwChk").html('<b style="color:red; font-size: 12px;">[비밀번호는 필수 정보입니다!]</b>');
+			chk2 = false;
+		}else if(!getPwCheck.test($(this).val()) || $(this).val().length < 8){
+			$(this).css("background-color", "pink");
+			$("#pwChk").html('<b style="color:red; font-size: 12px;">[툭수문자 포함 8자 이상 작성해주세요!]</b>');
+			chk2 = false;
+		}else{
+			$(this).css("background-color", "aqua");
+			$("#pwChk").html('<b style="color:green; font-size: 12px;">[OK]</b>');
+			chk2 = true;
+		}
+	});//end pwCheck
 	
+	//비밀번호 확인 검증
+	$("#inputPwChk").on("keyup", function() {
+		if($(this).val() === ""){
+			$(this).css("background-color", "pink");
+			$("#pwChk2").html('<b style="color:red; font-size: 12px;">[비밀번호를 재입력해주세요!]</b>');
+			chk3 = false;
+		}else if($(this).val() != $("#inputPw").val()){
+			$(this).css("background-color", "pink");
+			$("#pwChk2").html('<b style="color:red; font-size: 12px;">[비밀번호가 일치하지 않습니다!]</b>');
+			chk3 = false;
+		}else{
+			$(this).css("background-color", "aqua");
+			$("#pwChk2").html('<b style="color:green; font-size: 12px;">[OK]</b>');
+			chk3 = true;
+		}
+	});//end pwChk2
+	
+	//이름 입력값 검증
+	$("#inputName").on("keyup", function() {
+		if($(this).val() === ""){
+			$(this).css("background-color", "pink");
+			$("#nameChk").html('<b style="color:red; font-size: 12px;">[이름은 필수 정보입니다!]</b>');
+			chk4 = false;
+		}else if(!getName.test($(this).val())){
+			$(this).css("background-color", "pink");
+			$("#nameChk").html('<b style="color:red; font-size: 12px;">[이름은 한글로 입력해주세요!]</b>');
+			chk4 = false;
+		}else{
+			$(this).css("background-color", "aqua");
+			$("#nameChk").html('<b style="color:green; font-size: 12px;">[OK]</b>');
+			chk4 = true;
+		}
+	});//end nameCheck
 	
 	
 	
