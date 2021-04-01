@@ -11,4 +11,10 @@ public class HomeController {
 		return "home";
 	}
 	
+	//회원가입화면 mapping : 테스트용 매핑
+	@GetMapping("/join")
+	public String join() {
+		return "user/join";
+	}
+	
 }
