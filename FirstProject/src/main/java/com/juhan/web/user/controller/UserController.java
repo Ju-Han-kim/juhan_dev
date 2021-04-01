@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.juhan.web.user.model.UserVO;
 import com.juhan.web.user.service.IUserService;
 
 @RestController
@@ -20,6 +21,11 @@ public class UserController {
 		return service.idCheck(userId);
 	}
 	
+	@PostMapping("/join")
+	public String join(@RequestBody UserVO user) {
+		service.register(user);
+		return "joinSuccess";
+	}
 	
 	
 	

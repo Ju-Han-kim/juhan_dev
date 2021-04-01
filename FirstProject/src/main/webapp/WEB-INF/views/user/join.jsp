@@ -47,7 +47,7 @@
 				data: id,
 				url: "/user/idchk",
 				success: function(result) {
-					if(result == 1){
+					if(result >= 1){
 						$("#inputUserId").css("background-color", "pink");
 						$("#idChk").html('<b style="color:red; font-size: 12px;">[중복된 아이디입니다!]</b>');
 						chk1 = false;
@@ -114,9 +114,45 @@
 			chk4 = true;
 		}
 	});//end nameCheck
-	
-	
-	
+
+
+	$("#join-btn").click(function() {
+		
+		if(chk1 && chk2 && chk3 && chk4){
+			const id = $("#inputUserId").val();
+			const pw = $("#inputPw").val();
+			const name = $("#inputName").val();
+			
+			$.ajax({
+				type: "POST",
+				headers: {
+					"Content-Type": "application/json"	
+				},
+				data: JSON.stringify({
+					"userId": id,
+					"password": pw,
+					"name": name
+				}),
+				url: "/user/join",
+				dataType: "text",
+				success: function(result) {
+					if(result === "joinSuccess"){
+						alert("회원가입을 축하합니다!");
+						location.href="/";
+					}else{
+						alert("회원가입 실패! 다시 시도해주세요");
+						location.href="<c:url value='/join' />";
+					}
+				},
+				error: function() {
+					console.log("통신실패");
+				}
+			});
+			
+		}else{
+			alert("입력값을 확인해주세요!");
+		}
+	});
 	
 	
 </script>
