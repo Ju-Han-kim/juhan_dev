@@ -34,6 +34,13 @@
 			<version>${org.springframework-version}</version>
 		</dependency>
 
+		<!-- spring-security-web -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
+
 		<!-- DB Setting -->
 
 		<!-- HikariCP -->

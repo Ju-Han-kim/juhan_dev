@@ -3,6 +3,7 @@ package com.juhan.web.user.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.juhan.web.user.model.UserVO;
@@ -16,6 +17,8 @@ public class UserService implements IUserService {
 	
 	@Override
 	public void register(UserVO user) {
+		BCryptPasswordEncoder encoding = new BCryptPasswordEncoder();
+		user.setPassword(encoding.encode(user.getPassword()));
 		mapper.register(user);
 	}
 
