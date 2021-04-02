@@ -26,6 +26,18 @@
 	
 	<context:component-scan base-package="com.juhan.web" />
 	
+	<beans:bean id="boardInterceptor" class="com.juhan.web.commons.interceptor.BoardInterceptor" />
 	
+	<!-- interceptor -->
+	<interceptors>
+		<interceptor>
+			<mapping path="/board/list"/>
+			<mapping path="/board/write"/>
+			<mapping path="/board/delete"/>
+			<mapping path="/board/update"/>
+			<mapping path="/board/content/*"/>
+			<beans:ref bean="boardInterceptor"/>
+		</interceptor>
+	</interceptors>
 	
 </beans:beans>
