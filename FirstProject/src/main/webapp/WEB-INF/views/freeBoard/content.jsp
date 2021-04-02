@@ -32,7 +32,7 @@
 			<input type="hidden" name="currentPage" value="${p.currentPage}"/>
 			<input type="hidden" name="messagePerPage" value="${p.messagePerPage}"/>
 			<%-- 추후 작성자는 로그인 session으로 처리예정 --%>
-			<input type="hidden" name="writer" value="임의작성자"/>
+			<input type="hidden" name="writer" value="${login.name}"/>
 			<table border="1">
 				<tr>
 					<td colspan="4">

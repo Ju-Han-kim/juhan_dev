@@ -46,7 +46,7 @@ public class UserController {
 		
 		if(dbUser != null) {
 			if(encoding.matches(user.getPassword(), dbUser.getPassword())) {
-				session.setAttribute("login", user.getUserId());
+				session.setAttribute("login", dbUser);
 				result = "loginSuccess";
 			}else {
 				result = "pwFail";

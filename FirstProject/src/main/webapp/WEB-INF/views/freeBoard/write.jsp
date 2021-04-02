@@ -7,7 +7,7 @@
 	<hr>
 	<form method="post" id="writeForm">
 		# 작성자<br>
-		<input name="writer" size="20" placeholder="제목을 작성해주세요" /><br>
+		<input name="writer" size="20" value="${login.name}" readonly/><br>
 		# 제목<br>
 		<input name="title" size="20" placeholder="제목을 작성해주세요" /><br>
 		# 내용<br>
