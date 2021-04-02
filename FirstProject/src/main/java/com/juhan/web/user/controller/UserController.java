@@ -57,6 +57,13 @@ public class UserController {
 		return result;
 	}
 	
+	@GetMapping("/logout")
+	public ModelAndView logout(HttpSession session) {
+		session.removeAttribute("login");
+		return new ModelAndView("redirect:/");
+	}
+	
+	
 	
 }
 

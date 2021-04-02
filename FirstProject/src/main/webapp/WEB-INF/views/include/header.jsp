@@ -21,7 +21,7 @@
 			</c:if>
 			<c:if test="${login != null}">
 				<a href="#">MyPage</a> | 
-				<a href="#">Logout</a>
+				<a href="<c:url value='/user/logout' />" onclick="return confirm('정말 로그아웃 하시겠습니까?')">Logout</a>
 			</c:if>
 		</p>
 	</div>
