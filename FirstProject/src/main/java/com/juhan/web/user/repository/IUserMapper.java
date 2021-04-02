@@ -10,10 +10,10 @@ public interface IUserMapper {
 	void register(UserVO user);
 	
 	//회원 개인정보 조회
-	UserVO selectOne(int userNo);
+	UserVO selectOne(String userId);
 	
 	//회원탈퇴
-	void deleteUser(int userNo);
+	void deleteUser(String userId);
 	
 	//아이디 중복 확인
 	int idCheck(String userId);

@@ -20,11 +20,11 @@
 
 	<select id="selectOne" resultMap="userMap">
 		SELECT * FROM user_tb
-		WHERE user_no = #{userNo}
+		WHERE user_id = #{userId}
 	</select>
 	
 	<delete id="deleteUser">
-		DELETE FROM user_tb WHERE user_no = #{userNo}
+		DELETE FROM user_tb WHERE user_id = #{userId}
 	</delete>
 	
 	<select id="idCheck" resultType="int">

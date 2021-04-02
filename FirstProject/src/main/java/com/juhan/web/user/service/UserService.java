@@ -23,13 +23,13 @@ public class UserService implements IUserService {
 	}
 
 	@Override
-	public UserVO selectOne(int userNo) {
-		return mapper.selectOne(userNo);
+	public UserVO selectOne(String userId) {
+		return mapper.selectOne(userId);
 	}
 
 	@Override
-	public void deleteUser(int userNo) {
-		mapper.deleteUser(userNo);
+	public void deleteUser(String userId) {
+		mapper.deleteUser(userId);
 	}
 
 	@Override

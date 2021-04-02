@@ -13,10 +13,16 @@
 	<div align="center" style="height: 100px; border: 1px solid red;">
 		<h2>상단 메뉴 공간입니다.</h2>
 		<p>
-			<a href="<c:url value='/' />">HOME</a> | <a
-				href="<c:url value='/board/list' />">자유게시판</a> | <a href="#">MyPage</a>
-			| <a href="#">####</a>
-
+			<a href="<c:url value='/' />">HOME</a> | 
+			<a href="<c:url value='/board/list' />">자유게시판</a> | 
+			<c:if test="${login == null}">
+				<a href="<c:url value='/user/login' />">로그인</a> | 
+				<a href="<c:url value='/join' />">회원가입</a>
+			</c:if>
+			<c:if test="${login != null}">
+				<a href="#">MyPage</a> | 
+				<a href="#">Logout</a>
+			</c:if>
 		</p>
 	</div>
 
