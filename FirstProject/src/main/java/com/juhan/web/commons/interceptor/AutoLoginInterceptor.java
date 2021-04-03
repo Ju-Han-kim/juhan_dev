@@ -22,10 +22,10 @@ public class AutoLoginInterceptor extends HandlerInterceptorAdapter{
 			throws Exception {
 
 		HttpSession session = request.getSession();
-		Cookie autoLogin = WebUtils.getCookie(request, "autoLogin");
+		Cookie loginCookie = WebUtils.getCookie(request, "loginCookie");
 		
-		if(autoLogin != null) {
-			UserVO dbUser = service.selectOneWithSessionId(autoLogin.getValue());
+		if(loginCookie != null) {
+			UserVO dbUser = service.selectOneWithSessionId(loginCookie.getValue());
 			if(dbUser != null) {
 				session.setAttribute("login", dbUser);
 			}

@@ -28,4 +28,7 @@ public interface IUserService {
 	//세션ID로 회원정보 받아오기
 	UserVO selectOneWithSessionId(String sessionId);
 	
+	//자동로그인 해제
+	void logout(String userId);
+	
 }

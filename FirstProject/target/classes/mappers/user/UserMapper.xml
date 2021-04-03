@@ -44,6 +44,10 @@
 	<select id="selectOneWithSessionId" resultMap="userMap">
 		SELECT * FROM user_tb WHERE session_id=#{sessionId}
 	</select>
+	
+	<update id="logout">
+		UPDATE user_tb SET session_id='none', limit_date=null WHERE user_id=#{userId}
+	</update>
 
 </mapper>
 

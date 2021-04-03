@@ -61,4 +61,9 @@ public class UserService implements IUserService {
 		return mapper.selectOneWithSessionId(sessionId);
 	}
 	
+	@Override
+	public void logout(String userId) {
+		mapper.logout(userId);
+	}
+	
 }
