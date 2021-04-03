@@ -54,7 +54,11 @@ public class UserService implements IUserService {
 		datas.put("limitDate", limitDate);
 		
 		mapper.setAutoLogin(datas);
-		
 	}
 
+	@Override
+	public UserVO selectOneWithSessionId(String sessionId) {
+		return mapper.selectOneWithSessionId(sessionId);
+	}
+	
 }

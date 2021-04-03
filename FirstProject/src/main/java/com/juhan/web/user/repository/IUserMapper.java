@@ -25,4 +25,7 @@ public interface IUserMapper {
 	//자동로그인 세션ID, 만료기간 설정
 	void setAutoLogin(Map<String, Object> datas);
 	
+	//세션ID로 회원정보 받아오기
+	UserVO selectOneWithSessionId(String sessionId);
+	
 }

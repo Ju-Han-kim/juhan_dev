@@ -11,6 +11,8 @@
 		<result property="password" column="password" />
 		<result property="name" column="name" />
 		<result property="regDate" column="reg_date" />
+		<result property="sessionId" column="session_id" />
+		<result property="limitDate" column="limit_date" />
 	</resultMap>
 	
 	<insert id="register">
@@ -38,6 +40,10 @@
 	<update id="setAutoLogin">
 		UPDATE user_tb SET session_id=#{sessionId}, limit_date=#{limitDate} WHERE user_id=#{userId}
 	</update>
+	
+	<select id="selectOneWithSessionId" resultMap="userMap">
+		SELECT * FROM user_tb WHERE session_id=#{sessionId}
+	</select>
 
 </mapper>
 
