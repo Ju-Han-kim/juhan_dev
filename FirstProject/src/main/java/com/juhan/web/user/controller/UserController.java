@@ -81,10 +81,14 @@ public class UserController {
 	
 	@GetMapping("/logout")
 	public ModelAndView logout(HttpSession session, HttpServletResponse response) {
+		String id="";
+		if(session.getAttribute("login") != null)
+			id = ((UserVO)session.getAttribute("login")).getUserId();
 		session.removeAttribute("login");
 		Cookie loginCookie = new Cookie("loginCookie", null);
 		
 		if(loginCookie != null) {
+			service.logout(id);
 			loginCookie.setPath("/");
 			loginCookie.setMaxAge(0);
 			response.addCookie(loginCookie);
