@@ -1,10 +1,10 @@
 $(function() {
 
 	$("#login-btn").click(function() {
-		
-		
 		const id = $("#inputUserId").val();
 		const pw = $("#inputPw").val();
+		
+		const autoLogin = $("#auto-login").is(":checked");
 		
 		if(id === "" || pw === ""){
 			alert("정보를 입력해주세요!");
@@ -18,7 +18,8 @@ $(function() {
 				dataType: "text",
 				data: JSON.stringify({
 					"userId": id,
-					"password": pw
+					"password": pw,
+					"autoLogin": autoLogin
 				}),
 				url: "/user/login",
 				success: function(result) {
@@ -39,13 +40,7 @@ $(function() {
 					console.log("통신오류");
 				}
 			});
-			
-			
-			
-			
-			
 		}
-		
 	});
 	
 });//end jquery

@@ -7,11 +7,10 @@
 	<h2>로그인</h2>
 	<hr>
 		# 아이디<br>
-		<input name="userId" id="inputUserId" size="20" maxlength="20" placeholder="아이디를 입력해주세요" />&nbsp;
-		&nbsp;&nbsp;<span id="idChk" style="height:20px;"></span><br>
+		<input name="userId" id="inputUserId" size="20" maxlength="20" placeholder="아이디를 입력해주세요" /><br>
 		# 비밀번호<br>
-		<input type="password" id="inputPw" name="password" size="20" placeholder="비밀번호를 입력해주세요" />&nbsp;&nbsp;<span id="pwChk" style="height:20px;"></span><br>
-		<span id="loginChk" style="height:20px;"></span>
+		<input type="password" id="inputPw" name="password" size="20" placeholder="비밀번호를 입력해주세요" /><br>
+		<input type="checkbox" id="auto-login" name="autoLogin"/> 자동로그인<br>
 		<input type="button" id="login-btn" value="로그인">
 
 <jsp:include page="../include/footer.jsp" />

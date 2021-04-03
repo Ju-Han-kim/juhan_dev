@@ -1,5 +1,9 @@
 package com.juhan.web.user.controller;
 
+import java.util.Date;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +42,7 @@ public class UserController {
 	}
 	
 	@PostMapping("/login")
-	public String login(@RequestBody UserVO user, HttpSession session) {
+	public String login(@RequestBody UserVO user, HttpSession session, HttpServletResponse response) {
 		
 		BCryptPasswordEncoder encoding = new BCryptPasswordEncoder();
 		UserVO dbUser = service.selectOne(user.getUserId());
@@ -47,6 +51,22 @@ public class UserController {
 		if(dbUser != null) {
 			if(encoding.matches(user.getPassword(), dbUser.getPassword())) {
 				session.setAttribute("login", dbUser);
+				
+				//autoLogin
+				if(user.isAutoLogin()) {
+					long limitTime = 60 * 60 * 24 * 90;
+					
+					Cookie autoLogin = new Cookie("autoLogin", session.getId());
+					autoLogin.setPath("/");
+					autoLogin.setMaxAge((int)limitTime);
+					
+					long limitDateTime = System.currentTimeMillis() + (limitTime * 1000);
+					Date limitDate = new Date(limitDateTime);
+					service.setAutoLogin(user.getUserId(), session.getId(), limitDate);
+					
+					response.addCookie(autoLogin);
+				}
+				
 				result = "loginSuccess";
 			}else {
 				result = "pwFail";

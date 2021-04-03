@@ -1,5 +1,6 @@
 package com.juhan.web.user.service;
 
+import java.util.Date;
 import java.util.List;
 
 import com.juhan.web.user.model.UserVO;
@@ -20,5 +21,8 @@ public interface IUserService {
 	
 	//회원 전체 조회
 	List<UserVO> getUsers();
+	
+	//자동로그인 세션ID, 만료기간 설정
+	void setAutoLogin(String userId, String sessionId, Date limitDate);
 	
 }

@@ -1,6 +1,9 @@
 package com.juhan.web.user.service;
 
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -40,6 +43,18 @@ public class UserService implements IUserService {
 	@Override
 	public List<UserVO> getUsers() {
 		return mapper.getUsers();
+	}
+	
+	@Override
+	public void setAutoLogin(String userId, String sessionId, Date limitDate) {
+		Map<String , Object> datas = new HashMap<String, Object>();
+		
+		datas.put("userId", userId);
+		datas.put("sessionId", sessionId);
+		datas.put("limitDate", limitDate);
+		
+		mapper.setAutoLogin(datas);
+		
 	}
 
 }

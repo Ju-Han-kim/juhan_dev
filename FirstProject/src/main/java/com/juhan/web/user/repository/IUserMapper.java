@@ -1,6 +1,7 @@
 package com.juhan.web.user.repository;
 
 import java.util.List;
+import java.util.Map;
 
 import com.juhan.web.user.model.UserVO;
 
@@ -20,4 +21,8 @@ public interface IUserMapper {
 	
 	//회원 전체 조회
 	List<UserVO> getUsers();
+	
+	//자동로그인 세션ID, 만료기간 설정
+	void setAutoLogin(Map<String, Object> datas);
+	
 }

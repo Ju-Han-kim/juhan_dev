@@ -34,6 +34,10 @@
 	<select id="getUsers" resultMap="userMap">
 		SELECT * FROM user_tb
 	</select>
+	
+	<update id="setAutoLogin">
+		UPDATE user_tb SET session_id=#{sessionId}, limit_date=#{limitDate} WHERE user_id=#{userId}
+	</update>
 
 </mapper>
 
