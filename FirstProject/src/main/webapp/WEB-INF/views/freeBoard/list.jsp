@@ -49,7 +49,7 @@
 		
 		<c:if test="${pm.prev}">
 			<a href="<c:url value='/board/list${pm.makeUri(1)}' />"> << </a>&nbsp;
-			<a href="<c:url value='/board/list${pm.makeUri(pm.beginPage - 1)}' />"> < </a>&nbsp;
+			<a href="<c:url value='/board/list${pm.makeUri(pm.page.currentPage - 1)}' />"> < </a>&nbsp;
 		</c:if>
 		
 		<c:forEach var="pageNum" begin="${pm.beginPage}" end="${pm.endPage}">
@@ -58,7 +58,7 @@
 		</c:forEach>
 		
 		<c:if test="${pm.next}">
-			<a href="<c:url value='/board/list${pm.makeUri(pm.endPage + 1)}' />"> > </a>&nbsp;
+			<a href="<c:url value='/board/list${pm.makeUri(pm.page.currentPage + 1)}' />"> > </a>&nbsp;
 			<a href="<c:url value='/board/list${pm.makeUri(pm.totalPage)}' />"> >> </a>&nbsp;
 		</c:if>
 		

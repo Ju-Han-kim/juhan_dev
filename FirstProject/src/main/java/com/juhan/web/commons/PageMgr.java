@@ -12,7 +12,7 @@ public class PageMgr {
 	private boolean prev;
 	private boolean next;
 	
-	private final int displayPageBtn = 10;
+	private final int displayPageBtn = 5;
 	
 	//uri 작성 method
 	public String makeUri(int currentPage) {
@@ -30,6 +30,7 @@ public class PageMgr {
 	public PageMgr(PageVO page, int allArticleCnt) {
 		this.page = page;
 		this.allArticleCnt = allArticleCnt;
+		this.prev = true;
 		this.next = true;
 		calcPageData();
 	}
@@ -41,14 +42,27 @@ public class PageMgr {
 			page.setCurrentPage(totalPage);
 		}
 		
-		endPage = (int)Math.ceil(page.getCurrentPage()/(double)displayPageBtn)*displayPageBtn;
+		endPage = page.getCurrentPage() + displayPageBtn/2;
 		beginPage = endPage-displayPageBtn+1;
 		
-		prev = (beginPage > 1) ? true : false;
-		if(endPage >= totalPage) {
+		if(totalPage > displayPageBtn) {
+			int tem = 0;
+			if(beginPage <= 1) {
+				tem = 1 - beginPage;
+				prev = false;
+			}else if(endPage >= totalPage) {
+				tem = totalPage - endPage;
+				next = false;
+			}
+			beginPage += tem;
+			endPage += tem;
+		}else {
+			beginPage = 1;
 			endPage = totalPage;
+			prev = false;
 			next = false;
 		}
+		
 	}
 	
 	public PageVO getPage() {
