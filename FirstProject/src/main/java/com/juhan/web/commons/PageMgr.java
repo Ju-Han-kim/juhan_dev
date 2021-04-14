@@ -43,25 +43,24 @@ public class PageMgr {
 		}
 		
 		endPage = page.getCurrentPage() + displayPageBtn/2;
-		beginPage = endPage-displayPageBtn+1;
+		beginPage = endPage - displayPageBtn + 1;
 		
 		if(totalPage > displayPageBtn) {
 			int tem = 0;
 			if(beginPage <= 1) {
 				tem = 1 - beginPage;
-				prev = false;
 			}else if(endPage >= totalPage) {
 				tem = totalPage - endPage;
-				next = false;
 			}
 			beginPage += tem;
 			endPage += tem;
-		}else {
+		} else {
 			beginPage = 1;
 			endPage = totalPage;
-			prev = false;
-			next = false;
 		}
+		
+		prev = (beginPage == 1)? false : true;
+		next = (endPage == totalPage) ? false : true;
 		
 	}
 	
