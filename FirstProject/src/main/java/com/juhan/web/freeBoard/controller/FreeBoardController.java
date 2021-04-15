@@ -13,6 +13,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.juhan.web.commons.CommentPageVO;
 import com.juhan.web.commons.PageMgr;
 import com.juhan.web.commons.SearchVO;
+import com.juhan.web.commons.interceptor.CommentPageMgr;
 import com.juhan.web.freeBoard.model.FreeBoardCommentVO;
 import com.juhan.web.freeBoard.model.FreeBoardVO;
 import com.juhan.web.freeBoard.service.IFreeBoardCommentService;
@@ -73,11 +74,12 @@ public class FreeBoardController {
 	public String freeBoardContent(@PathVariable int boardNo,@ModelAttribute("p") SearchVO paging 
 									, CommentPageVO cPage, Model model) {
 
-		
+		CommentPageMgr pm = new CommentPageMgr(cPage, cService.commentCount(boardNo));	
 		
 		service.viewCntUp(boardNo);
 		model.addAttribute("article", service.getArticle(boardNo));
-		model.addAttribute("comments", cService.getComments(boardNo));
+		model.addAttribute("comments", cService.getComments(boardNo, cPage));
+		model.addAttribute("pm", pm);
 		return "freeBoard/content";
 	}
 	

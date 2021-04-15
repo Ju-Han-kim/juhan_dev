@@ -55,8 +55,12 @@
 				
 					<tr align="center">
 						<td colspan="4">
-							<button class="comment-page-btn" id="${cpage-1}">Old</button> 
-							<button class="comment-page-btn" id="${cpage+1}">New</button> 
+							<c:if test="${pm.prev}">
+								<button class="comment-page-btn" id="${pm.cPage.cPage-1}">Old</button> 
+							</c:if>
+							<c:if test="${pm.next}">
+								<button class="comment-page-btn" id="${pm.cPage.cPage+1}">New</button> 
+							</c:if>
 						</td>
 					</tr>
 				

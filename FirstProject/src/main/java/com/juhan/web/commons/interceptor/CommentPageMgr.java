@@ -12,6 +12,8 @@ public class CommentPageMgr {
 	private final int displayPageBtn = 5;
 	
 	public CommentPageMgr(CommentPageVO cPage, int totalComment) {
+		this.prev = true;
+		this.next = true;
 		this.cPage = cPage;
 		this.totalComment = totalComment;
 		calc();
@@ -19,11 +21,13 @@ public class CommentPageMgr {
 	
 	private void calc() {
 		int totalPage = (int)Math.ceil(totalComment/(double)displayPageBtn);
-		if(cPage.getcPage() < 1) {
+		if(cPage.getcPage() <= 1) {
 			cPage.setcPage(1);
+			this.prev = false;
 		}
-		if(cPage.getcPage() > totalPage) {
+		if(cPage.getcPage() >= totalPage) {
 			cPage.setcPage(totalPage);
+			this.next = false;
 		}
 	}
 
