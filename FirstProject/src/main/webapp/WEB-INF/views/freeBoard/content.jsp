@@ -56,10 +56,10 @@
 					<tr align="center">
 						<td colspan="4">
 							<c:if test="${pm.prev}">
-								<button class="comment-page-btn" id="${pm.cPage.cPage-1}">Old</button> 
+								<a href="<c:url value='/board/content/${article.boardNo}?currentPage=${p.currentPage}&messagePerPage=${p.messagePerPage}&part=${p.part}&keyword=${p.keyword}&cPage=${pm.cPage.cPage-1}'/>">Old</a>&nbsp; 
 							</c:if>
 							<c:if test="${pm.next}">
-								<button class="comment-page-btn" id="${pm.cPage.cPage+1}">New</button> 
+								<a href="<c:url value='/board/content/${article.boardNo}?currentPage=${p.currentPage}&messagePerPage=${p.messagePerPage}&part=${p.part}&keyword=${p.keyword}&cPage=${pm.cPage.cPage+1}'/>">New</a> 
 							</c:if>
 						</td>
 					</tr>
@@ -94,9 +94,6 @@
 			btnForm.attr("action","<c:url value='/board/update'/>");
 			btnForm.submit();
 		});
-		
-		//페이지 버튼 클릭 시 이벤트처리
-		
 		
 		
 	});
