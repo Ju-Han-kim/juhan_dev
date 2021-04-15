@@ -51,6 +51,15 @@
 						</td>
 					</tr>
 				</c:forEach>
+				<!-- 댓글 페이징 -->
+				
+					<tr align="center">
+						<td colspan="4">
+							<button class="comment-page-btn" id="${cpage-1}">Old</button> 
+							<button class="comment-page-btn" id="${cpage+1}">New</button> 
+						</td>
+					</tr>
+				
 				<!-- 작성 폼 -->
 				<tr>
 					<td colspan="4" align="right">
@@ -81,6 +90,9 @@
 			btnForm.attr("action","<c:url value='/board/update'/>");
 			btnForm.submit();
 		});
+		
+		//페이지 버튼 클릭 시 이벤트처리
+		
 		
 		
 	});

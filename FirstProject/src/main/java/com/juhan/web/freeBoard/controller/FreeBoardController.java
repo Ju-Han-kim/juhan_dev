@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.juhan.web.commons.CommentPageVO;
 import com.juhan.web.commons.PageMgr;
 import com.juhan.web.commons.SearchVO;
 import com.juhan.web.freeBoard.model.FreeBoardCommentVO;
@@ -69,7 +70,11 @@ public class FreeBoardController {
 	
 	//글 상세보기 mapping
 	@GetMapping("/content/{boardNo}")
-	public String freeBoardContent(@PathVariable int boardNo,@ModelAttribute("p") SearchVO paging , Model model) {
+	public String freeBoardContent(@PathVariable int boardNo,@ModelAttribute("p") SearchVO paging 
+									, CommentPageVO cPage, Model model) {
+
+		
+		
 		service.viewCntUp(boardNo);
 		model.addAttribute("article", service.getArticle(boardNo));
 		model.addAttribute("comments", cService.getComments(boardNo));

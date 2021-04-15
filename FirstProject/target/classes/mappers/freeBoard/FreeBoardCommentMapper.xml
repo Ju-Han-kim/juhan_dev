@@ -14,7 +14,11 @@
 	</resultMap>
 	
 	<select id="getComments" resultMap="commentMapper">
-		SELECT * FROM free_board_comment WHERE board_no=#{boardNo} ORDER BY comment_no
+		SELECT * FROM (
+		    SELECT ROW_NUMBER() OVER(ORDER BY comment_no DESC)AS rn, free_board_comment.* 
+		    FROM free_board_comment
+		    WHERE board_no=#{boardNo}
+	    ) WHERE rn BETWEEN (#{cPage}-1)*#{messagePerPage}+1 AND #{cPage}*#{messagePerPage}
 	</select>
 	
 	<delete id="deleteComment">
@@ -29,5 +33,10 @@
 		INSERT INTO free_board_comment(comment_no, board_no, writer, content) 
 		VALUES(freeBoardCommentNo_seq.NEXTVAL, #{boardNo}, #{writer}, #{content})
 	</insert>
+	
+	<select id="commentCount" resultType="int">
+		SELECT count(*) FROM free_board_comment
+		WHERE board_no=#{boardNo}
+	</select>
 
 </mapper>

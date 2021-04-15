@@ -17,6 +17,7 @@ public class FreeBoardCommentController {
 	@Autowired
 	private IFreeBoardCommentService service;
 	
+	//댓글삭제
 	@GetMapping("/del/{commentNo}")
 	public String delComment(@PathVariable int commentNo, SearchVO paging, 
 							 int boardNo, RedirectAttributes ra) {
